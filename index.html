@@ -4,94 +4,411 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Zeghch — Coming Soon</title>
-  <meta name="description" content="Zeghch is launching soon. Stay tuned." />
+
+  <meta name="description"
+        content="Zeghch is launching soon. Starting in Yerevan, Armenia. Built with German technology by HafenTech and operated in Armenia by Heavens." />
+  <meta name="theme-color" content="#070c18" />
+
   <style>
-    :root { --bg:#0b1220; --card:#0f1a33; --text:#eaf0ff; --muted:#b8c4e6; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: radial-gradient(900px 500px at 20% 10%, #1b2a57 0%, transparent 55%),
-                  radial-gradient(900px 500px at 80% 20%, #0e3a4e 0%, transparent 60%),
-                  var(--bg);
-      color: var(--text); min-height: 100vh; display: grid; place-items: center; padding: 24px;
+    :root{
+      --bg:#070c18;
+
+      --card-solid:#0b1733;
+      --card: rgba(11, 23, 51, .92);
+
+      --border: rgba(255,255,255,.12);
+      --text:#f2f6ff;
+      --muted: rgba(242,246,255,.76);
+
+      --chip: rgba(255,255,255,.07);
+      --chip-border: rgba(255,255,255,.16);
+
+      --shadow: 0 20px 90px rgba(0,0,0,.55);
+      --radius: 28px;
     }
-    .card {
-      width: 100%; max-width: 860px; background: rgba(15,26,51,.75);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 24px; padding: 36px; backdrop-filter: blur(10px);
-      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+
+    *{ box-sizing:border-box; }
+    html, body { height:100%; }
+
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: var(--text);
+
+      background:
+        radial-gradient(1200px 700px at 18% 12%, rgba(66,99,255,.32) 0%, transparent 55%),
+        radial-gradient(1200px 700px at 82% 20%, rgba(0,180,200,.30) 0%, transparent 60%),
+        var(--bg);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      min-height:100vh;
     }
-    .top { display:flex; gap:18px; align-items:center; flex-wrap:wrap; }
-    .logo {
-      width: 64px; height: 64px; border-radius: 16px; background: rgba(255,255,255,.06);
-      display:grid; place-items:center; overflow:hidden;
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background: radial-gradient(
+        900px 600px at 50% 50%,
+        transparent 0%,
+        rgba(0,0,0,.30) 65%,
+        rgba(0,0,0,.55) 100%
+      );
+      pointer-events:none;
     }
-    .logo img { width: 100%; height: 100%; object-fit: contain; }
-    h1 { margin: 0; font-size: clamp(28px, 3.2vw, 44px); letter-spacing: .2px; }
-    p { margin: 10px 0 0; color: var(--muted); font-size: 16px; line-height: 1.55; max-width: 70ch; }
-    .badges { display:flex; gap:10px; flex-wrap:wrap; margin-top: 18px; }
-    .badge {
-      font-size: 13px; color: var(--muted);
-      border: 1px solid rgba(255,255,255,.12);
-      padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,.04);
+
+    .card{
+      position: relative;
+      width:100%;
+      max-width: 1040px;
+      background: var(--card-solid);
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:48px;
+      box-shadow: var(--shadow);
     }
-    .row { display:flex; gap:14px; flex-wrap:wrap; margin-top: 26px; }
-    .input {
-      flex: 1 1 240px; padding: 14px 16px; border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14); background: rgba(0,0,0,.18); color: var(--text);
-      outline: none;
+
+    @supports ((-webkit-backdrop-filter: blur(14px)) or (backdrop-filter: blur(14px))) {
+      .card{
+        background: rgba(11, 23, 51, .78);
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+      }
     }
-    .btn {
-      padding: 14px 16px; border-radius: 14px; border: 0; cursor: pointer;
-      background: linear-gradient(135deg, #22c1c3, #3a7bd5);
-      color: white; font-weight: 600;
+
+    .header{
+      display:flex;
+      gap:22px;
+      align-items:center;
+      flex-wrap:wrap;
     }
-    .footer { margin-top: 22px; color: rgba(255,255,255,.55); font-size: 13px; }
-    a { color: #89e6ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+
+    .logo{
+      width:76px;
+      height:76px;
+      border-radius:20px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      flex-shrink:0;
+    }
+
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
+    }
+
+
+
+    h1{
+      margin:0;
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight:800;
+      line-height:1.1;
+    }
+
+    .subtitle{
+      margin-top:12px;
+      max-width: 760px;
+      font-size:17px;
+      line-height:1.6;
+      color: var(--muted);
+    }
+
+    .badges{
+      margin-top:26px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .badge{
+      padding:9px 14px;
+      border-radius:999px;
+      font-size:14px;
+      color: rgba(242,246,255,.78);
+      background: var(--chip);
+      border:1px solid var(--chip-border);
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .form{
+      margin-top:34px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:stretch;
+    }
+
+    .input{
+      flex:1 1 280px;
+      padding:16px 18px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.30);
+      color: var(--text);
+      font-size:16px;
+      outline:none;
+      min-width:220px;
+    }
+
+    .input::placeholder{
+      color: rgba(242,246,255,.55);
+    }
+
+    .input:focus{
+      border-color: rgba(255,255,255,.35);
+    }
+
+    .button{
+      padding:16px 22px;
+      border-radius:16px;
+      border:0;
+      cursor:pointer;
+      font-weight:700;
+      font-size:16px;
+      color:white;
+      background: linear-gradient(135deg,#22c1c3,#3a7bd5);
+      box-shadow: 0 10px 26px rgba(0,0,0,.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .button:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(0,0,0,.35);
+    }
+
+    .button:active{
+      transform: translateY(0);
+    }
+
+    .trust{
+      margin-top:28px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      font-size:15px;
+      color: rgba(242,246,255,.78);
+    }
+
+    .trust strong{
+      color:#ffffff;
+      font-weight:700;
+    }
+
+    .dot{ opacity:.55; }
+
+    .footer{
+      margin-top:30px;
+      font-size:13px;
+      color: rgba(242,246,255,.55);
+    }
+
+    a{
+      color:#8fe7ff;
+      text-decoration:none;
+    }
+
+    a:hover{
+      text-decoration:underline;
+    }
+
+    /* Tablet adjustments */
+    @media (max-width: 768px){
+      body{ 
+        padding:24px; 
+      }
+
+      .card{
+        padding:32px;
+      }
+
+      h1{
+        font-size: clamp(26px, 6vw, 40px);
+      }
+
+      .subtitle{ 
+        font-size:16px; 
+      }
+
+      .form{
+        gap:12px;
+      }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 640px){
+      body{ 
+        padding:16px;
+        align-items:flex-start;
+        padding-top:32px;
+      }
+
+      .card{
+        padding:24px;
+        border-radius:22px;
+      }
+
+      .header{
+        gap:18px;
+      }
+
+      .logo{
+        width:64px;
+        height:64px;
+        border-radius:16px;
+      }
+
+      .logo::before{
+        font-size:28px;
+      }
+
+      h1{
+        font-size: clamp(24px, 7vw, 32px);
+      }
+
+      .subtitle{ 
+        font-size:15px;
+        margin-top:10px;
+      }
+
+      .badges{
+        margin-top:20px;
+        gap:10px;
+      }
+
+      .badge{
+        padding:8px 12px;
+        font-size:13px;
+      }
+
+      .form{
+        margin-top:24px;
+        gap:10px;
+      }
+
+      .input{ 
+        flex:1 1 100%;
+        padding:14px 16px;
+        font-size:16px; /* Prevents zoom on iOS */
+      }
+
+      .button{ 
+        width:100%;
+        padding:14px 20px;
+      }
+
+      .trust{
+        margin-top:24px;
+        gap:10px;
+        font-size:14px;
+      }
+
+      .dot{ display:none; }
+
+      .footer{
+        margin-top:24px;
+        font-size:12px;
+      }
+    }
+
+    /* Extra small mobile */
+    @media (max-width: 380px){
+      .card{
+        padding:20px;
+      }
+
+      h1{
+        font-size:22px;
+      }
+
+      .subtitle{
+        font-size:14px;
+      }
+
+      .badge{
+        font-size:12px;
+        padding:7px 10px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <main class="card">
-    <div class="top">
+    <div class="header">
       <div class="logo">
-        <!-- Put your logo file at /assets/logo.png -->
-        <img src="assets/logo.png" alt="Zeghch logo" />
+        <img src="assets/logo.png" alt="Zeghch logo" onerror="this.style.display='none'">
       </div>
       <div>
         <h1>Zeghch is coming soon.</h1>
-        <p>
-          A new way to discover and grab the best local deals in Armenia — curated offers, simple redemption,
-          and a smooth experience from day one.
+        <p class="subtitle">
+          A new way to discover and grab the best local deals —
+          curated offers, simple redemption, and a smooth experience from day one.
         </p>
       </div>
     </div>
 
     <div class="badges">
-      <div class="badge">🇦🇲 Launching in Armenia</div>
+      <div class="badge">📍 Starting in Yerevan, Armenia</div>
       <div class="badge">📱 Mobile-first</div>
       <div class="badge">⚡ Fast, simple, local</div>
     </div>
 
-    <div class="row">
-      <!-- This is a simple "mailto" (free). Later you can replace it with Mailchimp, Buttondown, etc. -->
-      <input class="input" id="email" type="email" placeholder="Your email for launch updates" />
-      <button class="btn" onclick="join()">Notify me</button>
+    <div class="form">
+      <input class="input" id="email" type="email" placeholder="Your email for launch updates" aria-label="Email address">
+      <button class="button" onclick="notify()">Notify me</button>
+    </div>
+
+    <div class="trust">
+      <span>🇩🇪 German technology by <strong><a href="https://hafentech.de/" target="_blank" rel="noopener">HafenTech</a></strong></span>
+      <span class="dot">•</span>
+      <span>🇦🇲 Operated in Armenia by <strong>Heavens</strong></span>
     </div>
 
     <div class="footer">
-      Contact: <a href="mailto:hello@zeghch.am">hello@zeghch.am</a>
-      &nbsp;•&nbsp; © <span id="y"></span> Zeghch
+      Contact: <a href="mailto:info@hafentech.de">info@hafentech.de</a>
+      &nbsp;•&nbsp; © <span id="year"></span> Zeghch
     </div>
   </main>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-    function join() {
-      const email = document.getElementById("email").value.trim();
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function notify(){
+      const emailInput = document.getElementById("email");
+      const email = emailInput.value.trim();
+      
+      if(!email){
+        alert("Please enter your email address");
+        emailInput.focus();
+        return;
+      }
+      
+      if(!email.includes("@")){
+        alert("Please enter a valid email address");
+        emailInput.focus();
+        return;
+      }
+
       const subject = encodeURIComponent("Zeghch launch updates");
-      const body = encodeURIComponent(`Hi Zeghch team,\n\nPlease notify me when you launch.\n\nEmail: ${email}\n`);
-      window.location.href = `mailto:hello@zeghch.am?subject=${subject}&body=${body}`;
+      const body = encodeURIComponent(
+        "Hi HafenTech team,\n\nPlease notify me when Zeghch launches.\n\nEmail: " + email
+      );
+      window.location.href =
+        "mailto:info@hafentech.de?subject=" + subject + "&body=" + body;
     }
   </script>
 </body>
